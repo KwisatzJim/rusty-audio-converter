@@ -1,0 +1,300 @@
+:root {
+  --rust: #b7410e;
+  --rust-bright: #de5b2a;
+  --bg: #1a1613;
+  --bg-panel: #241f1b;
+  --bg-panel-alt: #2c2621;
+  --border: #3a322b;
+  --text: #ece5dd;
+  --text-dim: #a89d90;
+  --green: #4caf50;
+  --red: #e05252;
+  --yellow: #d9a441;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+#app {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0;
+  color: var(--rust-bright);
+}
+
+h2 {
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  margin: 0 0 12px;
+}
+
+.badge {
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+
+.badge.unknown { color: var(--text-dim); }
+.badge.ok { color: var(--green); border-color: var(--green); }
+.badge.missing { color: var(--red); border-color: var(--red); }
+
+.hidden {
+  display: none !important;
+}
+
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+.panel.warning {
+  border-color: var(--yellow);
+}
+
+.install-option {
+  background: var(--bg-panel-alt);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.install-option .label {
+  font-weight: 600;
+  color: var(--rust-bright);
+}
+
+.install-option .note {
+  color: var(--text-dim);
+  font-size: 13px;
+  margin: 4px 0 8px;
+}
+
+.install-option code {
+  display: block;
+  background: #000;
+  color: #d9e6d3;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.install-option .actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  background: var(--rust);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 8px 14px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--rust-bright);
+}
+
+button:disabled {
+  background: var(--bg-panel-alt);
+  color: var(--text-dim);
+  cursor: not-allowed;
+}
+
+button.secondary {
+  background: var(--bg-panel-alt);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+button.primary {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.dropzone {
+  border: 2px dashed var(--border);
+  border-radius: 10px;
+  padding: 40px 20px;
+  text-align: center;
+  margin-bottom: 16px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.dropzone.drag-over {
+  border-color: var(--rust-bright);
+  background: rgba(183, 65, 14, 0.08);
+}
+
+.dropzone p {
+  color: var(--text-dim);
+  margin-top: 0;
+}
+
+.queue-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#queue-count {
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
+.queue-item {
+  border-bottom: 1px solid var(--border);
+  padding: 10px 0;
+}
+
+.queue-item:last-child {
+  border-bottom: none;
+}
+
+.queue-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.queue-item-name {
+  font-size: 13.5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.queue-item-status {
+  font-size: 12px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.queue-item-status.done { color: var(--green); }
+.queue-item-status.error { color: var(--red); }
+
+.progress-track {
+  height: 5px;
+  background: var(--bg-panel-alt);
+  border-radius: 3px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--rust-bright);
+  width: 0%;
+  transition: width 0.15s linear;
+}
+
+.remove-item-btn {
+  background: none;
+  color: var(--text-dim);
+  padding: 2px 6px;
+  font-size: 15px;
+}
+
+.remove-item-btn:hover {
+  color: var(--red);
+  background: none;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 6px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+select {
+  background: var(--bg-panel-alt);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 7px 8px;
+  font-size: 13px;
+}
+
+.folder-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#output-folder-display {
+  font-size: 12.5px;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.manual-locate {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.manual-locate p {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
+#log-output {
+  font-size: 12px;
+  color: var(--text-dim);
+  max-height: 160px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  margin: 0;
+}

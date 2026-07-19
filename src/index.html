@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RustyAudioConverter</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>🦀 RustyAudioConverter</h1>
+      <div id="ffmpeg-badge" class="badge unknown">checking ffmpeg…</div>
+    </header>
+
+    <section id="ffmpeg-warning" class="panel warning hidden">
+      <h2>ffmpeg not found</h2>
+      <p>RustyAudioConverter needs ffmpeg and ffprobe on your system to convert audio.</p>
+      <div id="install-options"></div>
+      <div class="manual-locate">
+        <p>Already have it installed somewhere unusual?</p>
+        <button id="locate-btn">Locate ffmpeg manually…</button>
+      </div>
+    </section>
+
+    <main id="main-app" class="hidden">
+      <section id="dropzone" class="dropzone">
+        <p>Drag audio files here, or</p>
+        <button id="browse-btn">Choose Files…</button>
+      </section>
+
+      <section id="queue" class="queue hidden">
+        <div class="queue-header">
+          <h2>Queue</h2>
+          <span id="queue-count"></span>
+        </div>
+        <div id="queue-list"></div>
+      </section>
+
+      <section id="options-panel" class="panel hidden">
+        <h2>Output settings</h2>
+        <div class="options-grid">
+          <label>
+            Format
+            <select id="format-select">
+              <option value="mp3">MP3</option>
+              <option value="aac">AAC (.m4a)</option>
+              <option value="flac">FLAC</option>
+              <option value="wav">WAV</option>
+              <option value="ogg">OGG Vorbis</option>
+              <option value="opus">Opus</option>
+              <option value="alac">ALAC (.m4a)</option>
+              <option value="aiff">AIFF</option>
+              <option value="wma">WMA</option>
+            </select>
+          </label>
+
+          <label id="bitrate-label">
+            Bitrate
+            <select id="bitrate-select">
+              <option value="128">128 kbps</option>
+              <option value="192" selected>192 kbps</option>
+              <option value="256">256 kbps</option>
+              <option value="320">320 kbps</option>
+            </select>
+          </label>
+
+          <label>
+            Sample rate
+            <select id="samplerate-select">
+              <option value="">Keep original</option>
+              <option value="44100">44.1 kHz</option>
+              <option value="48000">48 kHz</option>
+              <option value="96000">96 kHz</option>
+            </select>
+          </label>
+
+          <label>
+            Channels
+            <select id="channels-select">
+              <option value="">Keep original</option>
+              <option value="1">Mono</option>
+              <option value="2">Stereo</option>
+            </select>
+          </label>
+
+          <label>
+            Output folder
+            <div class="folder-row">
+              <span id="output-folder-display">Same as source</span>
+              <button id="choose-folder-btn">Change…</button>
+            </div>
+          </label>
+        </div>
+
+        <button id="convert-btn" class="primary" disabled>Convert All</button>
+      </section>
+
+      <section id="log-panel" class="panel hidden">
+        <h2>Log</h2>
+        <pre id="log-output"></pre>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
