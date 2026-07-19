@@ -5,8 +5,8 @@ using the system's `ffmpeg`/`ffprobe` to do the actual encoding.
 
 ## Architecture
 
-Single-binary Tauri app (no privileged helper needed — unlike RustyWriter, this
-doesn't touch raw disks, so it never needs to escalate privileges).
+Single-binary Tauri app (no privileged helper needed, this doesn't touch raw disks, so 
+it never needs to escalate privileges).
 
 - **`src-tauri/src/ffmpeg.rs`** — detects `ffmpeg`/`ffprobe` on PATH and in common
   install locations (Homebrew on both Apple Silicon/Intel, MacPorts, apt/dnf/pacman/
@@ -56,8 +56,6 @@ Linux target).
 
 ## Known follow-ups / things to firm up
 
-- No icons are included yet (`src-tauri/icons/`) — needed before `tauri build` will
-  produce a real bundle; `tauri icon <path-to-1024-png>` generates the full set.
 - Bitrate options are currently a fixed dropdown (128/192/256/320); could switch to
   VBR quality presets per codec (e.g. libmp3lame `-q:a`) if you'd rather.
 - No batch-level "convert as ZIP" or drag-out-of-app-when-done convenience yet.
