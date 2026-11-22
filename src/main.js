@@ -192,12 +192,30 @@ function renderQueue() {
 
     row.innerHTML = `
       <div class="queue-item-row">
-        <span class="queue-item-name" title="${item.path}">${item.name}</span>
-        <span class="queue-item-status ${item.status === "done" ? "done" : ""} ${item.status === "error" ? "error" : ""}">${statusText}</span>
-        <button class="remove-item-btn" data-id="${item.id}">✕</button>
+        <span class="queue-item-name"></span>
+        <span class="queue-item-status"></span>
+        <button class="remove-item-btn">✕</button>
       </div>
-      ${item.status === "converting" ? `<div class="progress-track"><div class="progress-fill" style="width:${item.percent}%"></div></div>` : ""}
     `;
+    const name = row.querySelector(".queue-item-name");
+    name.textContent = item.name;
+    name.title = item.path;
+
+    const status = row.querySelector(".queue-item-status");
+    status.textContent = statusText;
+    status.classList.toggle("done", item.status === "done");
+    status.classList.toggle("error", item.status === "error");
+
+    if (item.status === "converting") {
+      const track = document.createElement("div");
+      track.className = "progress-track";
+      const fill = document.createElement("div");
+      fill.className = "progress-fill";
+      fill.style.width = `${item.percent}%`;
+      track.appendChild(fill);
+      row.appendChild(track);
+    }
+
     row.querySelector(".remove-item-btn").addEventListener("click", () => {
       queue = queue.filter((q) => q.id !== item.id);
       renderQueue();
