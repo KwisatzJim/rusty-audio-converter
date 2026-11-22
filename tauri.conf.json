@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "identifier": "com.rustyaudioconverter.app",
   "build": {
-    "frontendDist": "../dist",
+    "frontendDist": "dist",
     "devUrl": "http://localhost:1420",
     "beforeDevCommand": "npm run vite-dev",
     "beforeBuildCommand": "npm run vite-build"
